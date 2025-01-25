@@ -1,13 +1,10 @@
-import { Text } from "@deriv-com/quill-ui";
 import styles from "./Header.module.scss";
 
 export const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.container}>
-                <Text size="xl" bold>
-                    Auto Trade UI
-                </Text>
+                <h1 className={styles.title}>Auto Trade UI</h1>
             </div>
         </header>
     );

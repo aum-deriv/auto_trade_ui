@@ -1,12 +1,9 @@
-import { Text } from "@deriv-com/quill-ui";
 import styles from "./BuilderPanel.module.scss";
 
 export const BuilderPanel = () => {
     return (
         <div className={styles.container}>
-            <Text size="lg" bold>
-                Builder Panel
-            </Text>
+            <h2 className={styles.title}>Builder Panel</h2>
         </div>
     );
 };
