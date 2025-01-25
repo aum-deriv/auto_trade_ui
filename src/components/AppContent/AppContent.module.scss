@@ -12,13 +12,3 @@
 .panel {
     height: 100%;
 }
-
-.resizeHandle {
-    width: 4px;
-    background-color: #e5e7eb;
-    transition: background-color 0.2s;
-
-    &:hover {
-        background-color: #d1d5db;
-    }
-}

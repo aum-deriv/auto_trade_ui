@@ -1,0 +1,30 @@
+.resizeHandle {
+    background-color: #e5e7eb;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        background-color: #d1d5db;
+    }
+}
+
+.iconWrapper {
+    width: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6b7280;
+    transform: rotate(90deg);
+
+    svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    &.vertical {
+        height: 4px;
+        transform: rotate(0deg);
+    }
+}

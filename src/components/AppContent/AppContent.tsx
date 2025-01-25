@@ -1,6 +1,7 @@
-import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { Panel, PanelGroup } from "react-resizable-panels";
 import { BuilderPanel } from "../BuilderPanel";
 import { FlowPanel } from "../FlowPanel";
+import { ResizeHandle } from "../ResizeHandle";
 import styles from "./AppContent.module.scss";
 
 export const AppContent = () => {
@@ -10,7 +11,7 @@ export const AppContent = () => {
                 <Panel defaultSize={50} className={styles.panel}>
                     <BuilderPanel />
                 </Panel>
-                <PanelResizeHandle className={styles.resizeHandle} />
+                <ResizeHandle direction="horizontal" />
                 <Panel defaultSize={50} className={styles.panel}>
                     <FlowPanel />
                 </Panel>
