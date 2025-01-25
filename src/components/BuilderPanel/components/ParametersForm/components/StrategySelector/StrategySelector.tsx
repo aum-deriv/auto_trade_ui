@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useAvailableStrategies } from "../../../../../../api/hooks/derived";
 import { Strategy } from "../../../../../../api/hooks/derived/types";
 import styles from "./StrategySelector.module.scss";
@@ -12,6 +13,12 @@ export const StrategySelector = ({
     onChange,
 }: StrategySelectorProps) => {
     const { data: strategies, isLoading, error } = useAvailableStrategies();
+
+    useEffect(() => {
+        if (strategies?.length && !value) {
+            onChange(strategies[0]);
+        }
+    }, [strategies, value, onChange]);
 
     if (error) {
         return (
