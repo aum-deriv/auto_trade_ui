@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_CONFIG } from "../../config";
 
 /**
  * Result type for the useMutation hook
@@ -21,7 +22,7 @@ interface MutationResult<T, P> {
  *
  * @template T The expected type of the response data
  * @template P The type of the payload data
- * @param url The URL to send the POST request to
+ * @param path The API path to send the POST request to (will be appended to baseUrl)
  * @returns An object containing the mutation state and mutate function
  *
  * @example
@@ -39,7 +40,7 @@ interface MutationResult<T, P> {
  *
  * function CreateUserForm() {
  *   const { mutate, isLoading, error } = useMutation<User, CreateUserPayload>(
- *     "https://api.example.com/users"
+ *     "/users"
  *   );
  *
  *   const handleSubmit = async (formData: CreateUserPayload) => {
@@ -53,10 +54,12 @@ interface MutationResult<T, P> {
  * }
  * ```
  */
-export function useMutation<T, P>(url: string): MutationResult<T, P> {
+export function useMutation<T, P>(path: string): MutationResult<T, P> {
     const [data, setData] = useState<T | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<Error | null>(null);
+
+    const url = `${API_CONFIG.baseUrl}${path}`;
 
     const mutate = async (payload: P): Promise<void> => {
         setIsLoading(true);

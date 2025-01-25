@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { API_CONFIG } from "../../config";
 
 /**
  * Result type for the useQuery hook
@@ -27,7 +28,7 @@ interface QueryOptions {
  * A custom hook for making GET requests to RESTful APIs
  *
  * @template T The expected type of the response data
- * @param url The URL to fetch from
+ * @param path The API path to fetch from (will be appended to baseUrl)
  * @param options Configuration options for the query
  * @returns An object containing the query result state
  *
@@ -40,7 +41,7 @@ interface QueryOptions {
  *
  * function UserProfile({ userId }: { userId: string }) {
  *   const { data, isLoading, error } = useQuery<User>(
- *     `https://api.example.com/users/${userId}`,
+ *     `/users/${userId}`,
  *     { refetchInterval: 5000 }
  *   );
  *
@@ -53,7 +54,7 @@ interface QueryOptions {
  * ```
  */
 export function useQuery<T>(
-    url: string,
+    path: string,
     options: QueryOptions = {}
 ): QueryResult<T> {
     const [data, setData] = useState<T | null>(null);
@@ -61,6 +62,7 @@ export function useQuery<T>(
     const [error, setError] = useState<Error | null>(null);
 
     const { enabled = true, refetchInterval } = options;
+    const url = `${API_CONFIG.baseUrl}${path}`;
 
     useEffect(() => {
         let isMounted = true;
