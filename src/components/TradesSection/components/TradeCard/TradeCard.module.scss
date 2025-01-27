@@ -2,7 +2,7 @@
     background: white;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
-    padding: 1rem;
+    padding: 0.75rem;
     transition: all 0.2s;
 
     &:hover {
@@ -11,35 +11,20 @@
     }
 }
 
-.symbol {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 0.5rem;
-}
-
 .details {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+    margin-top: 0.25rem;
 }
 
-.price {
-    color: #374151;
-    font-weight: 500;
-}
-
-.exitPrice {
-    margin-left: 0.5rem;
-    color: #059669;
-}
-
+.price,
 .time {
-    color: #6b7280;
-    font-size: 0.875rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
 }
 
-.exitTime {
-    margin-left: 0.25rem;
+.secondary {
     color: #6b7280;
 }

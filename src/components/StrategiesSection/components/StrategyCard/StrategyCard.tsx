@@ -1,6 +1,6 @@
 import { StrategyInstance } from "../../../../api/hooks/derived/types";
 import { useStopStrategy } from "../../../../api/hooks/derived/strategies/useStopStrategy";
-import { Button } from "../../../common/Button";
+import { Button, Tag, Text } from "@deriv-com/quill-ui";
 import styles from "./StrategyCard.module.scss";
 
 interface StrategyCardProps {
@@ -18,41 +18,48 @@ export const StrategyCard = ({ strategy }: StrategyCardProps) => {
     return (
         <div className={styles.strategy}>
             <div className={styles.header}>
-                <div className={styles.name}>{strategy.name}</div>
-                <div className={`${styles.status} ${styles[strategy.status]}`}>
-                    {strategy.status}
-                </div>
+                <Text size="lg" bold>
+                    {strategy.name}
+                </Text>
+                <Tag
+                    label={strategy.status}
+                    variant="custom"
+                    size="sm"
+                    isBold
+                    className={styles[strategy.status]}
+                />
             </div>
             <div className={styles.details}>
-                <div className={styles.time}>
+                <Text size="sm">
                     Started: {new Date(strategy.start_time).toLocaleString()}
-                </div>
+                </Text>
                 {strategy.stop_time && (
-                    <div className={styles.time}>
+                    <Text size="sm">
                         Stopped: {new Date(strategy.stop_time).toLocaleString()}
-                    </div>
+                    </Text>
                 )}
                 <div className={styles.parameters}>
-                    <div className={styles.parametersTitle}>Parameters:</div>
+                    <Text size="md" bold>
+                        Parameters:
+                    </Text>
                     {Object.entries(strategy.parameters).map(([key, value]) => (
                         <div key={key} className={styles.parameter}>
-                            <span className={styles.parameterName}>{key}:</span>{" "}
-                            <span className={styles.parameterValue}>
-                                {String(value)}
-                            </span>
+                            <Text size="sm">{key}:</Text>
+                            <Text size="sm">{String(value)}</Text>
                         </div>
                     ))}
                 </div>
                 {strategy.status === "active" && (
                     <div className={styles.actions}>
                         <Button
+                            color="black"
+                            label="Stop"
+                            size="sm"
+                            type="button"
                             variant="secondary"
                             onClick={handleStopStrategy}
-                            isLoading={isStoppingStrategy}
-                            className={styles.stopButton}
-                        >
-                            Stop Strategy
-                        </Button>
+                            disabled={isStoppingStrategy}
+                        />
                     </div>
                 )}
             </div>
