@@ -1,5 +1,6 @@
 import { Panel, PanelGroup } from "react-resizable-panels";
 import { ParametersForm } from "./components";
+import { ChatPanel } from "./components/ChatPanel";
 import { ResizeHandle } from "../ResizeHandle";
 import styles from "./BuilderPanel.module.scss";
 
@@ -13,7 +14,7 @@ export const BuilderPanel = () => {
                 </Panel>
                 <ResizeHandle direction="vertical" />
                 <Panel defaultSize={40} minSize={20} className={styles.panel}>
-                    <div className={styles.bottomPanel} />
+                    <ChatPanel />
                 </Panel>
             </PanelGroup>
         </div>

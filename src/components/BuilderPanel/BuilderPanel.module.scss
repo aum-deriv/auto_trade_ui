@@ -2,7 +2,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
     background-color: white;
 }
 
@@ -18,11 +17,4 @@
 
 .panel {
     height: 100%;
-}
-
-.bottomPanel {
-    height: 100%;
-    background-color: white;
-    border-radius: 4px;
-    border: 1px solid #e5e7eb;
 }
