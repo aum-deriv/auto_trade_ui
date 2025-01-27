@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAvailableStrategies } from "../../../../../../api/hooks/derived";
 import { Strategy } from "../../../../../../api/hooks/derived/types";
+import { DropdownButton, type TSingleSelectItem } from "@deriv-com/quill-ui";
 import styles from "./StrategySelector.module.scss";
 
 interface StrategySelectorProps {
@@ -16,7 +17,8 @@ export const StrategySelector = ({
 
     useEffect(() => {
         if (strategies?.length && !value) {
-            onChange(strategies[0]);
+            const defaultStrategy = strategies[0];
+            onChange(defaultStrategy);
         }
     }, [strategies, value, onChange]);
 
@@ -30,29 +32,43 @@ export const StrategySelector = ({
         );
     }
 
+    const options: TSingleSelectItem[] =
+        strategies?.map((strategy) => ({
+            id: strategy.name,
+            label: strategy.name,
+            onClick: () => {
+                onChange(strategy);
+            },
+        })) ?? [];
+
     return (
         <div className={styles.container}>
-            <label className={styles.label}>Select Strategy</label>
-            <select
-                className={styles.select}
-                value={value?.name ?? ""}
-                onChange={(e) => {
-                    const strategy = strategies?.find(
-                        (s) => s.name === e.target.value
-                    );
-                    onChange(strategy ?? null);
+            <DropdownButton
+                color="black"
+                contentHeight="sm"
+                contentTitle="Select Strategy"
+                iconPosition="start"
+                label={value?.name ?? "Select Strategy"}
+                onClose={() => {}}
+                onOpen={() => {}}
+                onSelectionChange={(selectedOptions) => {
+                    if (selectedOptions.length > 0) {
+                        const selectedOption = selectedOptions[0];
+                        const strategy = strategies?.find(
+                            (s) => s.name === selectedOption.id
+                        );
+                        if (strategy) {
+                            onChange(strategy);
+                        }
+                    }
                 }}
+                options={options}
+                size="md"
+                variant="primary"
                 disabled={isLoading}
-            >
-                <option value="">
-                    {isLoading ? "Loading strategies..." : "Select a strategy"}
-                </option>
-                {strategies?.map((strategy) => (
-                    <option key={strategy.name} value={strategy.name}>
-                        {strategy.name}
-                    </option>
-                ))}
-            </select>
+                closeContentOnClick
+                fullWidth
+            />
             {!isLoading && !strategies?.length && (
                 <div className={styles.message}>No strategies available</div>
             )}

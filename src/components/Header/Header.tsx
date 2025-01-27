@@ -1,13 +1,14 @@
 import { NavLink } from "react-router-dom";
 import { Text } from "@deriv-com/quill-ui";
 import styles from "./Header.module.scss";
+import { BrandDerivLogoCoralIcon } from "@deriv/quill-icons/Logo";
 
 export const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.brand}>
-                {/* <BrandDerivLogoCoralIcon height="20px" width="20px" /> */}
-                <Text size="lg" bold>
+                <BrandDerivLogoCoralIcon height="20px" width="20px" />
+                <Text size="md" bold>
                     Auto Trade UI
                 </Text>
             </div>

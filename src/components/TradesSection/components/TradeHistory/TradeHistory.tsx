@@ -1,3 +1,4 @@
+import { Text } from "@deriv-com/quill-ui";
 import { useTradeHistory } from "../../../../api/hooks/derived/trades";
 import { TradeCard } from "../TradeCard";
 import styles from "./TradeHistory.module.scss";
@@ -6,15 +7,15 @@ export const TradeHistory = () => {
     const { data: trades, isLoading, error } = useTradeHistory();
 
     if (isLoading) {
-        return <div className={styles.message}>Loading trade history...</div>;
+        return <Text color="#6b7280">Loading Trades History...</Text>;
     }
 
     if (error) {
-        return <div className={styles.error}>Error: {error.message}</div>;
+        return <Text color="#dc2626">Error: {error?.message}</Text>;
     }
 
     if (!trades?.length) {
-        return <div className={styles.message}>No trade history</div>;
+        return <Text color="#6b7280">No trades history</Text>;
     }
 
     return (

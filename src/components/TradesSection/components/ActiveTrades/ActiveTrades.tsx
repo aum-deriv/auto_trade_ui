@@ -1,3 +1,4 @@
+import { Text } from "@deriv-com/quill-ui";
 import { useOpenPositions } from "../../../../api/hooks/derived/trades";
 import { TradeCard } from "../TradeCard";
 import styles from "./ActiveTrades.module.scss";
@@ -6,15 +7,15 @@ export const ActiveTrades = () => {
     const { data: positions, isLoading, error } = useOpenPositions();
 
     if (isLoading) {
-        return <div className={styles.message}>Loading active trades...</div>;
+        return <Text color="#6b7280">Loading Active Trades...</Text>;
     }
 
     if (error) {
-        return <div className={styles.error}>Error: {error.message}</div>;
+        return <Text color="#dc2626">Error: {error?.message}</Text>;
     }
 
     if (!positions?.length) {
-        return <div className={styles.message}>No active trades</div>;
+        return <Text color="#6b7280">No active trades</Text>;
     }
 
     return (

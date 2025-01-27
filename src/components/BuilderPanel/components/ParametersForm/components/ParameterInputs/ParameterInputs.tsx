@@ -1,5 +1,5 @@
 import { Strategy } from "../../../../../../api/hooks/derived/types";
-import { TextInput } from "../../../../../common/TextInput";
+import { TextField } from "@deriv-com/quill-ui";
 import { Checkbox } from "../../../../../common/Checkbox";
 import styles from "./ParameterInputs.module.scss";
 
@@ -25,14 +25,17 @@ export const ParameterInputs = ({
                     case "string":
                         return (
                             <div key={param.name} className={styles.field}>
-                                <TextInput
+                                <TextField
                                     label={param.name}
                                     value={(value as string) ?? ""}
                                     onChange={(e) =>
                                         onChange(param.name, e.target.value)
                                     }
+                                    message={param.description}
+                                    shouldRound
+                                    variant="outline"
                                     required={param.required}
-                                    description={param.description}
+                                    type="text"
                                 />
                             </div>
                         );
@@ -40,8 +43,7 @@ export const ParameterInputs = ({
                     case "number":
                         return (
                             <div key={param.name} className={styles.field}>
-                                <TextInput
-                                    type="number"
+                                <TextField
                                     label={param.name}
                                     value={(value as number) ?? ""}
                                     onChange={(e) =>
@@ -50,8 +52,11 @@ export const ParameterInputs = ({
                                             Number(e.target.value)
                                         )
                                     }
+                                    message={param.description}
+                                    shouldRound
+                                    variant="outline"
                                     required={param.required}
-                                    description={param.description}
+                                    type="number"
                                 />
                             </div>
                         );
