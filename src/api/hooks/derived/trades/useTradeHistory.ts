@@ -30,11 +30,12 @@ import { Trade } from "../types";
  */
 export function useTradeHistory() {
     const subscription = useSubscription<Trade[]>();
+    const { subscribe, unsubscribe } = subscription;
 
     useEffect(() => {
-        subscription.subscribe("trade_history");
-        return () => subscription.unsubscribe();
-    }, [subscription]);
+        subscribe("trade_history");
+        return () => unsubscribe();
+    }, [subscribe, unsubscribe]);
 
     return subscription;
 }

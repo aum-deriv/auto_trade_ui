@@ -1,0 +1,91 @@
+.strategy {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 1rem;
+    transition: all 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    &.running {
+        background-color: #dcfce7;
+        color: #059669;
+    }
+
+    &.stopped {
+        background-color: #fee2e2;
+        color: #dc2626;
+    }
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.time {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.parameters {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.parametersTitle {
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.parameter {
+    font-size: 0.875rem;
+    margin-bottom: 0.25rem;
+}
+
+.parameterName {
+    color: #6b7280;
+}
+
+.parameterValue {
+    color: #111827;
+    font-family: monospace;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.stopButton {
+    min-width: 120px;
+}

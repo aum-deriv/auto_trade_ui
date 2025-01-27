@@ -36,9 +36,9 @@ export interface StrategyParameter {
 }
 
 export interface StrategyInstance {
-    strategy_id: string;
+    id: string;
     name: string;
-    status: "running" | "stopped";
+    status: "active" | "stopped";
     parameters: Record<string, unknown>;
     start_time: string;
     stop_time?: string;
@@ -50,5 +50,5 @@ export interface StartStrategyParams {
 }
 
 export interface StopStrategyParams {
-    strategy_id: string;
+    id: string;
 }

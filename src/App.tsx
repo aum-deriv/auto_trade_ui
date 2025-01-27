@@ -1,19 +1,28 @@
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Header } from "./components/Header";
-import { AppContent } from "./components/AppContent";
-import { WSProvider } from "./api/ws";
+import { BuilderRoute, MonitorRoute } from "./routes";
+import { WSProvider } from "./api/ws/WSProvider";
+import { API_CONFIG } from "./api/config";
 import styles from "./App.module.scss";
 
-function App() {
+export const App = () => {
     return (
-        <div className={styles.app}>
-            <Header />
-            <main className={styles.main}>
-                <WSProvider url="ws://localhost:8080/ws">
-                    <AppContent />
-                </WSProvider>
-            </main>
-        </div>
+        <BrowserRouter>
+            <WSProvider url={API_CONFIG.wsUrl}>
+                <div className={styles.app}>
+                    <Header />
+                    <main className={styles.main}>
+                        <Routes>
+                            <Route path="/builder" element={<BuilderRoute />} />
+                            <Route path="/monitor" element={<MonitorRoute />} />
+                            <Route
+                                path="*"
+                                element={<Navigate to="/builder" replace />}
+                            />
+                        </Routes>
+                    </main>
+                </div>
+            </WSProvider>
+        </BrowserRouter>
     );
-}
-
-export default App;
+};

@@ -24,44 +24,50 @@ export const ParameterInputs = ({
                 switch (param.type) {
                     case "string":
                         return (
-                            <TextInput
-                                key={param.name}
-                                label={param.name}
-                                value={(value as string) ?? ""}
-                                onChange={(e) =>
-                                    onChange(param.name, e.target.value)
-                                }
-                                required={param.required}
-                                description={param.description}
-                            />
+                            <div key={param.name} className={styles.field}>
+                                <TextInput
+                                    label={param.name}
+                                    value={(value as string) ?? ""}
+                                    onChange={(e) =>
+                                        onChange(param.name, e.target.value)
+                                    }
+                                    required={param.required}
+                                    description={param.description}
+                                />
+                            </div>
                         );
 
                     case "number":
                         return (
-                            <TextInput
-                                key={param.name}
-                                type="number"
-                                label={param.name}
-                                value={(value as number) ?? ""}
-                                onChange={(e) =>
-                                    onChange(param.name, Number(e.target.value))
-                                }
-                                required={param.required}
-                                description={param.description}
-                            />
+                            <div key={param.name} className={styles.field}>
+                                <TextInput
+                                    type="number"
+                                    label={param.name}
+                                    value={(value as number) ?? ""}
+                                    onChange={(e) =>
+                                        onChange(
+                                            param.name,
+                                            Number(e.target.value)
+                                        )
+                                    }
+                                    required={param.required}
+                                    description={param.description}
+                                />
+                            </div>
                         );
 
                     case "boolean":
                         return (
-                            <Checkbox
-                                key={param.name}
-                                label={param.name}
-                                checked={(value as boolean) ?? false}
-                                onChange={(e) =>
-                                    onChange(param.name, e.target.checked)
-                                }
-                                description={param.description}
-                            />
+                            <div key={param.name} className={styles.field}>
+                                <Checkbox
+                                    label={param.name}
+                                    checked={(value as boolean) ?? false}
+                                    onChange={(e) =>
+                                        onChange(param.name, e.target.checked)
+                                    }
+                                    description={param.description}
+                                />
+                            </div>
                         );
 
                     default:

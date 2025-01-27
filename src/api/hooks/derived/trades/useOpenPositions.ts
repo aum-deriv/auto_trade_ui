@@ -30,11 +30,12 @@ import { Trade } from "../types";
  */
 export function useOpenPositions() {
     const subscription = useSubscription<Trade[]>();
+    const { subscribe, unsubscribe } = subscription;
 
     useEffect(() => {
-        subscription.subscribe("open_positions");
-        return () => subscription.unsubscribe();
-    }, [subscription]);
+        subscribe("open_positions");
+        return () => unsubscribe();
+    }, [subscribe, unsubscribe]);
 
     return subscription;
 }

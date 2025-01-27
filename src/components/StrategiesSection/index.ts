@@ -1,0 +1,1 @@
+export { StrategiesSection } from "./StrategiesSection";

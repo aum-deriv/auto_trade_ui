@@ -1,0 +1,1 @@
+export { StrategiesHistory } from "./StrategiesHistory";

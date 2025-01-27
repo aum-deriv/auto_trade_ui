@@ -1,0 +1,45 @@
+.trade {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 1rem;
+    transition: all 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.symbol {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.price {
+    color: #374151;
+    font-weight: 500;
+}
+
+.exitPrice {
+    margin-left: 0.5rem;
+    color: #059669;
+}
+
+.time {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.exitTime {
+    margin-left: 0.25rem;
+    color: #6b7280;
+}

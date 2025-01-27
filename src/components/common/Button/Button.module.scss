@@ -1,0 +1,33 @@
+.button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.2s;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.primary {
+    background: #2563eb;
+    color: white;
+    border: none;
+
+    &:hover:not(:disabled) {
+        background: #1d4ed8;
+    }
+}
+
+.secondary {
+    background: white;
+    border: 1px solid #e5e7eb;
+    color: #374151;
+
+    &:hover:not(:disabled) {
+        background: #f9fafb;
+    }
+}

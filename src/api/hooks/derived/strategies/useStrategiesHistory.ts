@@ -3,18 +3,18 @@ import { useSubscription } from "../../base";
 import { StrategyInstance } from "../types";
 
 /**
- * Hook for subscribing to real-time active strategies updates
+ * Hook for subscribing to real-time strategy history updates
  *
  * @returns Object containing subscription data and state
  *
  * @example
  * ```typescript
- * function ActiveStrategiesList() {
- *   const { data: strategies, isLoading, error } = useActiveStrategies();
+ * function StrategiesHistoryList() {
+ *   const { data: strategies, isLoading, error } = useStrategiesHistory();
  *
- *   if (isLoading) return <div>Loading strategies...</div>;
+ *   if (isLoading) return <div>Loading strategies history...</div>;
  *   if (error) return <div>Error: {error.message}</div>;
- *   if (!strategies?.length) return <div>No active strategies</div>;
+ *   if (!strategies?.length) return <div>No strategies history</div>;
  *
  *   return (
  *     <ul>
@@ -32,12 +32,12 @@ import { StrategyInstance } from "../types";
  * }
  * ```
  */
-export function useActiveStrategies() {
+export function useStrategiesHistory() {
     const subscription = useSubscription<StrategyInstance[]>();
     const { subscribe, unsubscribe } = subscription;
 
     useEffect(() => {
-        subscribe("active_strategies");
+        subscribe("strategies_history");
         return () => unsubscribe();
     }, [subscribe, unsubscribe]);
 
