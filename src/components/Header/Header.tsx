@@ -9,7 +9,7 @@ export const Header = () => {
             <div className={styles.brand}>
                 <BrandDerivLogoCoralIcon height="20px" width="20px" />
                 <Text size="md" bold>
-                    Auto Trade UI
+                    AutoTrade
                 </Text>
             </div>
             <nav className={styles.nav}>
