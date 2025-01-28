@@ -4,7 +4,8 @@ import { BuilderRoute, MonitorRoute } from "./routes";
 import { WSProvider } from "./api/ws/WSProvider";
 import { API_CONFIG } from "./api/config";
 import styles from "./App.module.scss";
-import { ThemeProvider } from "@deriv-com/quill-ui";
+import { SnackbarController, ThemeProvider } from "@deriv-com/quill-ui";
+import { SnackbarProvider } from "@deriv-com/quill-ui";
 
 export const App = () => {
     return (
@@ -13,22 +14,27 @@ export const App = () => {
                 <ThemeProvider theme="light">
                     <div className={styles.app}>
                         <Header />
-                        <main className={styles.main}>
-                            <Routes>
-                                <Route
-                                    path="/builder"
-                                    element={<BuilderRoute />}
-                                />
-                                <Route
-                                    path="/monitor"
-                                    element={<MonitorRoute />}
-                                />
-                                <Route
-                                    path="*"
-                                    element={<Navigate to="/builder" replace />}
-                                />
-                            </Routes>
-                        </main>
+                        <SnackbarProvider>
+                            <SnackbarController />
+                            <main className={styles.main}>
+                                <Routes>
+                                    <Route
+                                        path="/builder"
+                                        element={<BuilderRoute />}
+                                    />
+                                    <Route
+                                        path="/dashboard"
+                                        element={<MonitorRoute />}
+                                    />
+                                    <Route
+                                        path="*"
+                                        element={
+                                            <Navigate to="/dashboard" replace />
+                                        }
+                                    />
+                                </Routes>
+                            </main>
+                        </SnackbarProvider>
                     </div>
                 </ThemeProvider>
             </WSProvider>

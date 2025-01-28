@@ -1,3 +1,4 @@
+import { Text } from "@deriv-com/quill-ui";
 import { useActiveStrategies } from "../../../../api/hooks/derived/strategies";
 import { StrategyCard } from "../StrategyCard";
 import styles from "./ActiveStrategies.module.scss";
@@ -6,17 +7,15 @@ export const ActiveStrategies = () => {
     const { data: strategies, isLoading, error } = useActiveStrategies();
 
     if (isLoading) {
-        return (
-            <div className={styles.message}>Loading active strategies...</div>
-        );
+        return <Text color="#6b7280">Loading active strategies...</Text>;
     }
 
     if (error) {
-        return <div className={styles.error}>Error: {error.message}</div>;
+        return <Text color="#dc2626">Error: {error.message}</Text>;
     }
 
     if (!strategies?.length) {
-        return <div className={styles.message}>No active strategies</div>;
+        return <Text color="#6b7280">No active strategies</Text>;
     }
 
     return (

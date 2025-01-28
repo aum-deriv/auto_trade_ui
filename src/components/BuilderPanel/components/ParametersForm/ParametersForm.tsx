@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { useStartStrategy } from "../../../../api/hooks/derived/strategies";
 import { ParameterInputs, StrategySelector } from "./components";
-import { Button, Text } from "@deriv-com/quill-ui";
+import { Button, Text, useSnackbar } from "@deriv-com/quill-ui";
 import { useStrategy } from "../../../../contexts/StrategyContext";
 import styles from "./ParametersForm.module.scss";
+import { useNavigate } from "react-router-dom";
 
 export const ParametersForm = () => {
     const { selectedStrategy, setSelectedStrategy } = useStrategy();
     const [parameters, setParameters] = useState<Record<string, unknown>>({});
-    const { mutate: startStrategy, isLoading } = useStartStrategy();
+    const { mutate: startStrategy, isLoading, error } = useStartStrategy();
+    const { addSnackbar } = useSnackbar();
+    const navigate = useNavigate();
 
     const handleParameterChange = (name: string, value: unknown) => {
         setParameters((prev) => ({
@@ -29,7 +32,21 @@ export const ParametersForm = () => {
         startStrategy({
             name: selectedStrategy.name,
             parameters,
-        });
+        })
+            .then(() =>
+                addSnackbar({
+                    hasCloseButton: false,
+                    actionText: "Go to Dashboard ⇱",
+                    onActionClick: () => navigate("/dashboard"),
+                    message: `Strategy ${selectedStrategy.name} has started.`,
+                })
+            )
+            .catch(() =>
+                addSnackbar({
+                    hasCloseButton: false,
+                    message: `Unable to start strategy: ${error?.message}`,
+                })
+            );
     };
 
     return (

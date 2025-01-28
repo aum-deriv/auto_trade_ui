@@ -1,3 +1,4 @@
+import { Text } from "@deriv-com/quill-ui";
 import { ActiveStrategies } from "./components/ActiveStrategies";
 import { StrategiesHistory } from "./components/StrategiesHistory";
 import styles from "./StrategiesSection.module.scss";
@@ -6,11 +7,15 @@ export const StrategiesSection = () => {
     return (
         <div className={styles.container}>
             <div className={styles.section}>
-                <h3 className={styles.title}>Active Strategies</h3>
+                <Text size="lg" bold>
+                    Active Strategies
+                </Text>
                 <ActiveStrategies />
             </div>
             <div className={styles.section}>
-                <h3 className={styles.title}>Strategy History</h3>
+                <Text size="lg" bold>
+                    Strategy History
+                </Text>
                 <StrategiesHistory />
             </div>
         </div>

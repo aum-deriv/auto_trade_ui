@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { BrandDerivLogoCoralIcon } from "@deriv/quill-icons/Logo";
+import { LegacyTraderSHubIcon } from "@deriv/quill-icons/Legacy";
 import { Text } from "@deriv-com/quill-ui";
 import styles from "./Header.module.scss";
-import { BrandDerivLogoCoralIcon } from "@deriv/quill-icons/Logo";
+import { LabelPairedPuzzleCaptionBoldIcon } from "@deriv/quill-icons/LabelPaired";
 
 export const Header = () => {
     return (
@@ -14,27 +16,40 @@ export const Header = () => {
             </div>
             <nav className={styles.nav}>
                 <NavLink
+                    to="/dashboard"
+                    className={({ isActive }) =>
+                        `${styles.link} ${isActive ? styles.active : ""}`
+                    }
+                >
+                    {({ isActive }) => (
+                        <>
+                            <LegacyTraderSHubIcon
+                                fill="#000000"
+                                iconSize="xs"
+                            />
+                            <Text size="md" bold={isActive}>
+                                Dashboard
+                            </Text>
+                        </>
+                    )}
+                </NavLink>
+                <NavLink
                     to="/builder"
                     className={({ isActive }) =>
                         `${styles.link} ${isActive ? styles.active : ""}`
                     }
                 >
                     {({ isActive }) => (
-                        <Text size="md" bold={isActive}>
-                            Builder
-                        </Text>
-                    )}
-                </NavLink>
-                <NavLink
-                    to="/monitor"
-                    className={({ isActive }) =>
-                        `${styles.link} ${isActive ? styles.active : ""}`
-                    }
-                >
-                    {({ isActive }) => (
-                        <Text size="md" bold={isActive}>
-                            Monitor
-                        </Text>
+                        <>
+                            <LabelPairedPuzzleCaptionBoldIcon
+                                width="22"
+                                height="22"
+                            />
+
+                            <Text size="md" bold={isActive}>
+                                Builder
+                            </Text>
+                        </>
                     )}
                 </NavLink>
             </nav>
