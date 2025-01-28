@@ -2,12 +2,21 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    margin-top: 1rem;
 }
 
 .messages {
+    position: relative;
     flex: 1;
     overflow-y: auto;
     padding: 1rem;
+
+    .tempMessage {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 .input {
