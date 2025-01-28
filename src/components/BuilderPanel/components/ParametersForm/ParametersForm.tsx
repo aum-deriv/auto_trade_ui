@@ -1,14 +1,12 @@
 import { useState } from "react";
-import { Strategy } from "../../../../api/hooks/derived/types";
 import { useStartStrategy } from "../../../../api/hooks/derived/strategies";
 import { ParameterInputs, StrategySelector } from "./components";
 import { Button, Text } from "@deriv-com/quill-ui";
+import { useStrategy } from "../../../../contexts/StrategyContext";
 import styles from "./ParametersForm.module.scss";
 
 export const ParametersForm = () => {
-    const [selectedStrategy, setSelectedStrategy] = useState<Strategy | null>(
-        null
-    );
+    const { selectedStrategy, setSelectedStrategy } = useStrategy();
     const [parameters, setParameters] = useState<Record<string, unknown>>({});
     const { mutate: startStrategy, isLoading } = useStartStrategy();
 
@@ -42,6 +40,7 @@ export const ParametersForm = () => {
             <StrategySelector
                 value={selectedStrategy}
                 onChange={(strategy) => {
+                    console.log("Selected strategy:", strategy); // Debug log
                     setSelectedStrategy(strategy);
                     setParameters({}); // Reset parameters when strategy changes
                 }}
